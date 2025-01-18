@@ -13,7 +13,16 @@ Industry : Retail (Aditya Birla Fashion and Retail Limited (ABFRL))
  3)How does your current infrastructure handle the volume and complexity of processing hundreds of thousands of checkouts daily across multiple brands?
 
 3.Produce a RACI matrix for the migration stakeholders.
--->The RACI matrix outlines the roles and responsibilities of key stakeholders during ABFRL’s cloud journey. The digital chief is responsible for defining business objectives, selecting an onboarding strategy, and overseeing all activities. The IT team is responsible for managing tasks such as resource assessment, cloud migration, data entry, and demonstration support. Store managers provide information on business needs, while HR and the Training Team handle employee training. Dynamics 365 customers support the technical aspects, including data migration and testing, while the Finance Team is involved in budgeting and pricing decisions.
+| **Task/Activity**                       | **Executive Leadership** | **IT Team** | **Project Management Team** | **Business Unit Leaders** | **Operations/Store Management** | **Implementation Team** |
+|-----------------------------------------|--------------------------|-------------|-----------------------------|---------------------------|--------------------------------|-------------------------|
+| **Define business requirements**        | A                        | C           | R                           | R                         | C                              | C                       |
+| **Select migration tools and platforms**| A                        | R           | C                           | C                         | C                              | R                       |
+| **Data migration planning**             | C                        | A           | R                           | C                         | C                              | R                       |
+| **POS terminal rollout**                | C                        | R           | A                           | R                         | R                              | R                       |
+| **Employee training on new system**     | C                        | R           | A                           | C                         | A                              | R                       |
+| **Monitor system performance post go-live** | C                        | A           | R                           | C                         | R                              | R                       |
+| **Customer service integration**        | C                        | R           | C                           | C                         | C                              | A                       |
+
 
 4.Describe the most likely migration approach that will suit the chosen company.
 -->I believe Aditya Birla Fashion and Retail Limited (ABFRL) is larde-size organization and for that a phased migration approach will be most appropriate. The company can begin by moving selected stores or departments to minimize risks, test the solution, and refine the process.This method provides time for training, troubleshooting, and refining the integration, ensuring a smooth transition across the entire organization.
