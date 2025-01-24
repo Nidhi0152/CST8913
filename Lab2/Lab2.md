@@ -17,8 +17,14 @@ Scenario: The following application consists of a Web Server written in Flask. A
 
    4)Managing and monitoring:
     You will be in charge of keeping the servers running properly. It involves keeping an eye on performance, guarantee enough space, and addressing issues if any component of the app failed.
+
+  Daigram:
+
+
+
+   
   
-  Daigram: ![IaaS](https://github.com/user-attachments/assets/7d6c49a2-66e4-467b-a947-8345b7b7a655)
+ ![IaaS](https://github.com/user-attachments/assets/7d6c49a2-66e4-467b-a947-8345b7b7a655)
 
 
  2) Describe how this application can be deployed in the cloud using PaaS infrastructure.
