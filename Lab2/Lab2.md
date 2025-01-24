@@ -1,6 +1,7 @@
 Scenario: The following application consists of a Web Server written in Flask. A UI front end written in React. A database layer consisting of Postgres.
 
-1) Describe how this application can be deployed in the cloud using IaaS infrastructure.
+1) Describe how this application can be deployed in the cloud using IaaS infrastructure:
+   
    IaaS infrastructure let you have full command over the infrastructure of your application and one can configure whole system according to their requirements. Cloud provider will only provide resouce needed and 
    client will pay as they use these resources.
    To deploy this application using IaaS will be consist of several steps:
@@ -27,7 +28,8 @@ Scenario: The following application consists of a Web Server written in Flask. A
  ![IaaS](https://github.com/user-attachments/assets/7d6c49a2-66e4-467b-a947-8345b7b7a655)
 
 
- 2) Describe how this application can be deployed in the cloud using PaaS infrastructure.
+ 2) Describe how this application can be deployed in the cloud using PaaS infrastructure:
+    
     Paas infrastructure let you focus on your main task which creating code for the application and the rest is taken care by the cloud provider such as configurations for softwares those are needed, scaling of 
     virtual machines as per demand.
      To deploy this application using PaaS will be consist of several steps:
