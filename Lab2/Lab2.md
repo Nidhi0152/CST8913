@@ -19,40 +19,7 @@ Scenario: The following application consists of a Web Server written in Flask. A
     You will be in charge of keeping the servers running properly. It involves keeping an eye on performance, guarantee enough space, and addressing issues if any component of the app failed.
 
    Daigram:
-   Start
-  |
-  v
-+--------------------------+
-|  1) Set up Virtual Machine|
-|      (Create VMs for React|
-|      Frontend, Flask Web  |
-|      Server, Postgres DB) |
-+--------------------------+
-  |
-  v
-+--------------------------+
-|  2) Configuration of     |
-|      Required Software   |
-|      (Install Flask, React|
-|      and Postgres)       |
-+--------------------------+
-  |
-  v
-+--------------------------+
-|  3) Networking & Security|
-|      (Set up network, firewalls,|
-|      and security groups)|
-+--------------------------+
-  |
-  v
-+--------------------------+
-|  4) Manage & Monitor     |
-|      (Oversee performance,|
-|      storage, and issues)|
-+--------------------------+
-  |
-  v
-End
+![IaaS](https://github.com/user-attachments/assets/7d6c49a2-66e4-467b-a947-8345b7b7a655)
 
 
  2) Describe how this application can be deployed in the cloud using PaaS infrastructure.
@@ -69,6 +36,7 @@ End
     3)Regarding the Database:
     The cloud offers you managed Postgres database service. Setting up these services is straightforward; you do not have to maintain the software or server. You simply link your web app to the data store.
 
+
     4)Frontend Configuration:
     For the React frontend, one could use a static hosting service like Google Cloud Storage, or even the same PaaS platform used for the backend.
 
@@ -81,57 +49,4 @@ End
     planned.
 
     Daigram:
-    Start
-  |
-  v
-+-----------------------------------+
-|  1) Pick a PaaS Provider         |
-|     (User: Choose a platform)    |
-|     (Cloud Provider: Provide platform with|
-|      development & deployment tools) |
-+-----------------------------------+
-  |
-  v
-+-----------------------------------+
-|  2) Deploy Web Server            |
-|     (User: Upload Flask App)     |
-|     (Cloud Provider: Auto-generate|
-|      infrastructure)             |
-+-----------------------------------+
-  |
-  v
-+-----------------------------------+
-|  3) Configure Database           |
-|     (User: Link app to managed   |
-|      Postgres DB)                |
-|     (Cloud Provider: Provide and |
-|      manage Postgres database service)|
-+-----------------------------------+
-  |
-  v
-+-----------------------------------+
-|  4) Frontend Configuration       |
-|     (User: Upload React App)     |
-|     (Cloud Provider: Provide static|
-|      hosting service or backend) |
-+-----------------------------------+
-  |
-  v
-+-----------------------------------+
-|  5) Auto Scaling                 |
-|     (User: No action needed)     |
-|     (Cloud Provider: Automatically|
-|      scale resources as per demand)|
-+-----------------------------------+
-  |
-  v
-+-----------------------------------+
-|  6) Focus on Code                |
-|     (User: Write, update & monitor|
-|      app code)                   |
-|     (Cloud Provider: Manage infrastructure,|
-|      provide monitoring tools)   |
-+-----------------------------------+
-  |
-  v
-End
+![Paas](https://github.com/user-attachments/assets/81c5cd0b-5c41-45c9-96ce-b398cbc0fa80)
