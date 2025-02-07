@@ -1,5 +1,5 @@
 
-                                                                 **Lab4:Design Rehosting Migration**
+                                                                 Lab4:Design Rehosting Migration
 
 Introduction:
 The goal of this lift-and-shift migration is to migrate an existing application to a multi-region cloud setup. It ensures high availability and automatic failover in case of regional downtime, with minimum downtime.
