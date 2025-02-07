@@ -6,18 +6,30 @@ The goal of this lift-and-shift migration is to migrate an existing application 
 Architecture:
 ![1](https://github.com/user-attachments/assets/8cc71b77-c762-4f8d-b37d-36edad0d2a88)
 
-1)WebServerVM: These virtual machines serve static content and are deployed across multiple regions in at least two availability zones (AZs) for redundancy. Each region has its own set of WebServerVMs that are balanced by regional load balancers. If a region experiences failure, a global load balancer ensures that traffic is redirected to healthy regions where WebServerVMs are still operational. Active Geo-Replication helps ensure that the frontend is accessible from other regions even if one region goes down.
+1)WebServerVM: The WebServerVMs are responsible for serving the static content of the application. Each region will have its own set of WebServerVMs deployed in at least two Availability Zones (AZs) to provide redundancy and mitigate the risk of service disruption due to localized failures. This multi-Avalibilty deployment ensures that the application remains accessible even if one Availability Zone experiences issues.
 
-2)SQLVM (Database Backend): The SQL virtual machine hosts the backend database and is replicated across multiple regions using Active Geo-Replication. The primary database in Region A continuously synchronizes with secondary databases in other regions (e.g., Region B). In case of regional failure, geo-failover automatically promotes a secondary database to the primary role, maintaining database availability with minimal downtime. Auto-Failover Groups manage the failover process for all databases, ensuring traffic is redirected to the new primary database.
+2)SQLVM (Database Backend): The SQL virtual machine (SQLVM) hosts the backend database that powers the application. To provide high availability and fault tolerance, the SQLVM will be replicated across multiple regions. This replication ensures that in the event of a regional failure, the database will continue to function in another region without downtime, preserving data integrity and availability.
 
-3)Loadbalancer: The application uses regional load balancers to distribute traffic among WebServerVMs within each region. A global load balancer routes traffic between regions. If a regional failure occurs, the global load balancer reroutes traffic to a healthy region. The auto-failover group ensures that when the database fails over, traffic is directed to the newly promoted database without disruption.
+3)Loadbalancer: To optimize traffic distribution and ensure that the application remains operational during regional failures, the system will deploy multiple levels of load balancing:
 
-4)Auto Scaling: Auto-scaling for WebServerVMs ensures the infrastructure can handle fluctuating traffic loads. It automatically scales up or down the number of VMs based on demand. During regional failures, the auto-scaling feature ensures sufficient capacity in the fallback region to handle the incoming traffic, while the failover process ensures the application continues operating smoothly.
+  i)Regional Load Balancers: These load balancers will distribute incoming traffic evenly across the WebServerVMs within each region. This prevents any individual WebServerVM from becoming overloaded and ensures 
+    efficient resource utilization.
 
-5)Replication:
--->WebServerVMs: These virtual machines are replicated across multiple regions to ensure the frontend remains available. Each region has its own set of WebServerVMs, and the global load balancer ensures traffic is directed to the healthiest region.
--->SQLVMs: The database is replicated using Active Geo-Replication across regions. The primary database in one region (e.g., Region A) continuously syncs with secondary databases in other regions (e.g., Region B), ensuring data consistency and availability.
+ ii)Global Load Balancer: A global load balancer will direct traffic between regions. In the case of a regional failure, the global load balancer will reroute traffic to another regions, ensuring that the 
+   application continues to operate seamlessly. This global failover mechanism helps maintain business continuity in the event of regional downtime.
 
-6)In case of Failoure:
--->WebServerVMs: In case of a regional failure, the global load balancer automatically detects the issue and redirects traffic to the healthy region where WebServerVMs are still operational, ensuring minimal disruption to the application.
--->SQLVMs: If a regional failure occurs, Auto-Failover Groups handle the failover process. A secondary database is automatically promoted to the primary role, and traffic is rerouted to the new primary database, ensuring continuous database availability and no data loss.
+4)Replication and failover:
+-->WebServerVMs: Replication of the WebServerVMs will occur across regions, ensuring that the application’s frontend is available in multiple locations. This replication ensures that if one region goes down, the load balancer will redirect traffic to the healthy region with minimal delay. The global load balancer will monitor the health of the WebServerVMs across regions and seamlessly direct traffic to a functioning region, ensuring continuous access to the application.
+
+-->SQLVMs: The SQL database will be replicated across regions using Active Geo-Replication, ensuring data availability and consistency. In the event of a regional failure, the auto-failover group will handle the failover automatically, promoting a secondary database to the primary role. This ensures that the backend database remains functional with no data loss, even during unplanned outages. By leveraging Active Geo-Replication with Auto-Failover Groups, the database can failover with minimal downtime, and the system will maintain high availability for both the database and frontend components.
+
+Migration Process: To ensure high availability and little downtime throughout the shift, the migration process requires a number of important steps for setting up and synchronizing the infrastructure.
+
+1)Replication WebseverVM: To replicate WebServerVMs, Azure Migrate can be used to deploy VMs across regions, ensuring they are distributed across at least two Availability Zones (AZs) for redundancy. After deployment, the VMs should be validated to ensure they function correctly and handle the expected traffic load.
+
+2)Configuring Load Balancers:  Azure Load Balancer can be used to distribute traffic evenly across WebServerVMs within each region. To manage traffic between regions and handle failover, Azure Front Door or Azure Traffic Manager can be implemented to provide global load balancing and ensure availability during regional failures.
+
+3)Databe replication and failover: Azure SQL Database or Azure SQL Managed Instance can be used to replicate databases across regions, ensuring data consistency. Azure SQL Always On Availability Groups or Geo-Replication provide automatic failover, ensuring continuous database availability with minimal data loss.
+
+
+
