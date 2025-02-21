@@ -14,7 +14,6 @@ Components of the Monolithic Application
 
 6)Logs and Monitoring: Logs are written to local files on the VM. Monitoring is done manually or using basic tools.
 
-Diagram:
 +---------------------------------------------------+
 |                  Windows Server 2019 VM           |
 |                                                   |
