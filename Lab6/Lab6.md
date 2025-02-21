@@ -14,33 +14,5 @@ Components of the Monolithic Application
 
 6)Logs and Monitoring: Logs are written to local files on the VM. Monitoring is done manually or using basic tools.
 
-+---------------------------------------------------+
-|                  Windows Server 2019 VM           |
-|                                                   |
-|  +-------------------+       +-----------------+  |
-|  |   Web Server      |       |   SQL Server    |  |
-|  | (IIS/Apache)      |       |   Database      |  |
-|  |                   |       |                 |  |
-|  | +---------------+ |       | +-------------+ |  |
-|  | |  Frontend     | |       | |  Database    | |  |
-|  | | (HTML, CSS,   | |       | |  (Tables,    | |  |
-|  | | JavaScript)   | |       | |  Stored Procs)| |  |
-|  | +---------------+ |       | +-------------+ |  |
-|  |                   |       |                 |  |
-|  | +---------------+ |       |                 |  |
-|  | |  Backend      | |       |                 |  |
-|  | | (Business     | |       |                 |  |
-|  | | Logic, APIs)  | |       |                 |  |
-|  | +---------------+ |       |                 |  |
-|  |                   |       |                 |  |
-|  | +---------------+ |       |                 |  |
-|  | |  Background   | |       |                 |  |
-|  | |  Tasks        | |       |                 |  |
-|  | | (Batch Jobs,  | |       |                 |  |
-|  | |  Scheduled)   | |       |                 |  |
-|  | +---------------+ |       |                 |  |
-|  +-------------------+       +-----------------+  |
-|                                                   |
-+---------------------------------------------------+
 
 
