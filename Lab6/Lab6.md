@@ -1,6 +1,7 @@
 Lab 6 - Refactoring a Legacy Application for Cloud-Native Deployment on Azure
 
 **Monolithic Architecture**: A monolithic architecture is a conventional model where all components of an application are tightly coupled and deployed as a single unit.
+
 Components of the Monolithic Application
 1)Frontend:A single web server hosting the user interface and handles user requests and serves static content.
 
@@ -14,7 +15,11 @@ Components of the Monolithic Application
 
 6)Logs and Monitoring: Logs are written to local files on the VM. Monitoring is done manually or using basic tools.
 
+![Monolithic_Architecture](https://github.com/user-attachments/assets/64ece12d-fefe-4b72-8175-6c68aeebe0e3)
+
+
 **Plan the Refactoring Strategy**: To refactor existing system, components needs to be replaced with cloud services.
+
 1)Frontend: Migrate to Azure App Service for hosting the web UI.
 
 2)Backend APIs: Refactor into microservices and deploy to Azure App Service or Azure Functions.
@@ -28,6 +33,7 @@ Components of the Monolithic Application
 6)Logs: Store logs in Azure Blob Storage and use Azure Monitor for centralized logging.
 
 **Implement Refactoring Changes**:
+
 1)Deploy the Frontend to Azure App Service : Package the frontend code. Use the Azure App Service Migration Assistant to migrate the frontend. Configure the App 
   Service to auto-scale based on traffic.
 
@@ -37,22 +43,5 @@ Components of the Monolithic Application
 
 4)Store Static Content and Logs in Azure Blob Storage: Upload static files to Azure Blob Storage. Configure the application to serve static content from Blob Storage. Redirect application logs to Azure Blob Storage and integrate with Azure Monitor.
 
-+-----------------------------+       +-----------------------------+
-| Azure App Service           |       | Azure Functions             |
-| +-------------------------+ |       | +-------------------------+ |
-| | Frontend (Web UI)       | |       | | Background Tasks        | |
-| +-------------------------+ |       | +-------------------------+ |
-| | Backend APIs            | |       +-----------------------------+
-| +-------------------------+ |
-+-----------------------------+
-            |  |
-            |  |  +-----------------------------+
-            |  +->| Azure SQL Database          |
-            |     +-----------------------------+
-            |
-            |     +-----------------------------+
-            +---->| Azure Blob Storage          |
-                  | +-------------------------+ |
-                  | | Static Content & Logs   | |
-                  | +-------------------------+ |
-                  +-----------------------------+
+![Refactor_Architecture](https://github.com/user-attachments/assets/4c9afe52-389c-4cdb-b98e-6f00b3192cef)
+
