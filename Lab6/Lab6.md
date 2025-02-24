@@ -1,6 +1,6 @@
 Lab 6 - Refactoring a Legacy Application for Cloud-Native Deployment on Azure
 
-Monolithic Architecture: A monolithic architecture is a conventional model where all components of an application are tightly coupled and deployed as a single unit.
+**Monolithic Architecture**: A monolithic architecture is a conventional model where all components of an application are tightly coupled and deployed as a single unit.
 Components of the Monolithic Application
 1)Frontend:A single web server hosting the user interface and handles user requests and serves static content.
 
@@ -14,7 +14,7 @@ Components of the Monolithic Application
 
 6)Logs and Monitoring: Logs are written to local files on the VM. Monitoring is done manually or using basic tools.
 
-Plan the Refactoring Strategy: To refactor existing system, components needs to be replaced with cloud services.
+**Plan the Refactoring Strategy**: To refactor existing system, components needs to be replaced with cloud services.
 1)Frontend: Migrate to Azure App Service for hosting the web UI.
 
 2)Backend APIs: Refactor into microservices and deploy to Azure App Service or Azure Functions.
@@ -27,23 +27,32 @@ Plan the Refactoring Strategy: To refactor existing system, components needs to 
 
 6)Logs: Store logs in Azure Blob Storage and use Azure Monitor for centralized logging.
 
-+---------------------------------------------------------+
-|                 Azure Cloud-Native Architecture         |
-+---------------------------------------------------------+
+**Implement Refactoring Changes**:
+1)Deploy the Frontend to Azure App Service : Package the frontend code. Use the Azure App Service Migration Assistant to migrate the frontend. Configure the App 
+  Service to auto-scale based on traffic.
 
-Users --> [Azure App Service - Frontend (React/Angular/etc.)]
-               |
-               V
-       [Azure App Service - Backend API]
-               |
-               V
-       [Azure SQL Database (PaaS)]  <-- (Managed, Scalable)
+2)Migrate the Database to Azure SQL Database: Use the Azure Database Migration Service to migrate the SQL Server database to Azure SQL Database.
 
-               |    |--> [Azure Blob Storage] (Static Files, Logs)
-               |    |--> [Azure Functions] (Background Tasks, CRON Jobs)
-               |    |--> [Azure AD] (Authentication)
+3)Convert Background Tasks to Azure Functions: Identify background tasks. Rewrite these tasks as Azure Functions. Use triggers to execute the functions.
 
-    [Azure Monitor & Application Insights] (Logging & Monitoring)
-    
-    (Auto-Scaling Enabled for Frontend & Backend)
+4)Store Static Content and Logs in Azure Blob Storage: Upload static files to Azure Blob Storage. Configure the application to serve static content from Blob Storage. Redirect application logs to Azure Blob Storage and integrate with Azure Monitor.
 
++-----------------------------+       +-----------------------------+
+| Azure App Service           |       | Azure Functions             |
+| +-------------------------+ |       | +-------------------------+ |
+| | Frontend (Web UI)       | |       | | Background Tasks        | |
+| +-------------------------+ |       | +-------------------------+ |
+| | Backend APIs            | |       +-----------------------------+
+| +-------------------------+ |
++-----------------------------+
+            |  |
+            |  |  +-----------------------------+
+            |  +->| Azure SQL Database          |
+            |     +-----------------------------+
+            |
+            |     +-----------------------------+
+            +---->| Azure Blob Storage          |
+                  | +-------------------------+ |
+                  | | Static Content & Logs   | |
+                  | +-------------------------+ |
+                  +-----------------------------+
