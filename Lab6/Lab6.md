@@ -27,4 +27,23 @@ Plan the Refactoring Strategy: To refactor existing system, components needs to 
 
 6)Logs: Store logs in Azure Blob Storage and use Azure Monitor for centralized logging.
 
++---------------------------------------------------------+
+|                 Azure Cloud-Native Architecture         |
++---------------------------------------------------------+
+
+Users --> [Azure App Service - Frontend (React/Angular/etc.)]
+               |
+               V
+       [Azure App Service - Backend API]
+               |
+               V
+       [Azure SQL Database (PaaS)]  <-- (Managed, Scalable)
+
+               |    |--> [Azure Blob Storage] (Static Files, Logs)
+               |    |--> [Azure Functions] (Background Tasks, CRON Jobs)
+               |    |--> [Azure AD] (Authentication)
+
+    [Azure Monitor & Application Insights] (Logging & Monitoring)
+    
+    (Auto-Scaling Enabled for Frontend & Backend)
 
