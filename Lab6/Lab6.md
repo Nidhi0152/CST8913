@@ -103,7 +103,7 @@ The bookstore’s architecture consists of containerized microservices hosted in
 #### **II. Shop Service**
 - Manages the user interface for browsing and adding books to the cart.
 - Handles promotions, categories, and shopping experience.
-- **Database**: Uses Cosmos DB for storing user cart data and preferences.
+- Database: Uses Cosmos DB for storing user cart data and preferences.
 
 #### **III. Inventory Service**
 - Manages the available stock of books.
@@ -151,3 +151,64 @@ The bookstore’s architecture consists of containerized microservices hosted in
 
 ![BookStore_CloudArchitecture](https://github.com/user-attachments/assets/7b38cc76-5dab-4699-8874-623cfbf2c603)
 
+# Justifications for Chosen Azure Services
+
+**1. Azure App Service:**
+- Scalable and managed hosting for the frontend, simplifying deployment and maintenance without worrying about infrastructure management.
+
+**2. Azure Kubernetes Service (AKS):**
+- Container orchestration for microservices, providing efficient resource management, scaling, and isolation of services.
+
+**3. Azure Cosmos DB & SQL Database:**
+- Cosmos DB offers global distribution and scalability for non-relational data (e.g., search, cart), while SQL Database handles transactional data (e.g., inventory, orders).
+
+**4. Azure API Management:**
+- Centralized API gateway for managing and securing communication between frontend and microservices, ensuring scalable and reliable access to backend services.
+
+**5. Azure Functions:**
+- Serverless execution for event-driven operations like sending email confirmations and processing discounts, reducing overhead and cost.
+
+**6. Azure Key Vault:**
+- Securely stores sensitive credentials (e.g., API keys, payment credentials), improving security compliance.
+
+**7. Azure Active Directory (Azure AD):**
+- Centralized identity management for secure user authentication and API access control.
+
+**8. Azure Monitor & Application Insights:**
+- Provides real-time monitoring, enabling quick issue resolution and performance optimization for both infrastructure and application-level performance.
+
+# Migration and Deployment Steps
+
+**1. Frontend Deployment:**
+- Deploy the frontend on Azure App Service, configuring it with automated CI/CD pipelines for deployment.
+
+**2. Microservice Decomposition:**
+- Break down the monolithic backend into individual microservices, each containerized and managed by Azure Kubernetes Service (AKS).
+
+**3. Database Migration:**
+- Migrate the relational database to Azure SQL Database and non-relational data to Azure Cosmos DB.
+
+**4. API Gateway Setup:**
+- Set up Azure API Management to route and secure traffic to the appropriate microservices.
+
+**5. Serverless Functions:**
+- Implement Azure Functions for event-driven operations and integrate them with the rest of the system.
+
+**6. Security Integration:**
+- Configure Azure Key Vault for secure storage of credentials and Azure AD for user authentication.
+
+**7. Monitoring Setup:**
+- Implement Azure Monitor and Application Insights for continuous monitoring and performance tracking.
+
+# Lessons Learned and Challenges Faced
+
+**1. Complexity in Microservice Design:**
+- Breaking down the monolithic app into independent services requires careful planning of service boundaries and data management, while ensuring seamless communication and data consistency between microservices.
+
+**2. Database Refactoring:**
+- Migrating data to distributed databases like Cosmos DB and SQL Database required addressing data consistency challenges, while ensuring smooth migration without data loss or downtime.
+
+**3. Deployment and Scaling:**
+- Utilizing Azure DevOps for CI/CD pipelines streamlined deployments, but fine-tuning auto-scaling policies in AKS was a key step to meet changing traffic demands, and ensuring efficient resource allocation and load balancing across AKS containers was a challenge.
+
+  
