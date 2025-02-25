@@ -1,6 +1,7 @@
 Lab 6 - Refactoring a Legacy Application for Cloud-Native Deployment on Azure
 
-**Monolithic Architecture**: A monolithic architecture is a conventional model where all components of an application are tightly coupled and deployed as a single unit.
+# **Monolithic Architecture**
+A monolithic architecture is a conventional model where all components of an application are tightly coupled and deployed as a single unit.
 
 Components of the Monolithic Application
 
@@ -30,8 +31,49 @@ Components of the Monolithic Application
 - No need for specialized analytics services since all data is stored in the same database.
 
 ![BookStore_MonoliticArchitecture1](https://github.com/user-attachments/assets/8bf60398-c82d-431a-a1f2-d31b7deeff33)
+ 
+# Refactoring Strategy for Cloud Migration
 
-**Implement Refactoring Changes**:
+ **1. Frontend Refactoring**  
+   - Decouple frontend from the backend and host separately on Azure App Service for scalability and performance.
+
+**2. Backend Refactoring (Monolithic to Microservices)**  
+   - Break the monolithic backend into independent microservices running in containers, orchestrated by Azure Kubernetes Service (AKS).
+
+**3. Database Refactoring**  
+   - Migrate to a distributed database architecture using Cosmos DB for non-relational data and SQL Database for transactional data.
+
+**4. Payment Gateway Refactoring**  
+   - Isolate payment processing into a dedicated Payment Service with secure credentials managed in Azure Key Vault
+
+**5. Service Communication Refactoring**  
+   - Implement an API Gateway using Azure API Management for routing requests and ensuring secure service-to-service communication.
+
+**6. Web Server and Load Balancer Refactoring**  
+   - Transition to Azure App Service for frontend hosting and use Azure Load Balancer to distribute traffic across microservices.
+
+**7. Cloud Storage and Data Management**  
+   - Leverage Azure Blob Storage for file storage; use Cosmos DB and SQL Database for data storage.
+
+**8. Reporting and Analytics Refactoring**  
+   - Implement cloud-native analytics with Azure Monitor and Application Insights for advanced reporting.
+
+**9. Authentication & Authorization Refactoring**  
+   - Implement Azure Active Directory (Azure AD for user authentication and secure API access.
+
+**10. Serverless Functions**  
+   - Use Azure Functions for event-driven operations like email confirmations and processing discount coupons.
+
+**11. Security & Compliance Refactoring**  
+   - Secure sensitive data using Azure Key Vault enable encryption for data at rest and in transit, and monitor security with Azure Security Center
+
+ **12. Deployment Strategy**  
+   - Set up CI/CD pipelines with Azure DevOps for automated, secure deployments.
+
+**13. Monitoring and Observability**  
+   - Use Azure Monitor for infrastructure health and Application Insights for real-time application monitoring and troubleshooting.
+
+# **Implement Refactoring Changes**:
 The bookstore’s architecture consists of containerized microservices hosted in the cloud, connected to cloud storage and analytics tools for efficient management of books, customer data, and inventory.
 
  **1. Frontend**
