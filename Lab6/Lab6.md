@@ -3,45 +3,113 @@ Lab 6 - Refactoring a Legacy Application for Cloud-Native Deployment on Azure
 **Monolithic Architecture**: A monolithic architecture is a conventional model where all components of an application are tightly coupled and deployed as a single unit.
 
 Components of the Monolithic Application
-1)Frontend:A single web server hosting the user interface and handles user requests and serves static content.
 
-2)Backend: Business logic and APIs are tightly integrated into the same codebase as the frontend. I handles data processing, authentication, and other server-side operations.
+**1. Frontend**
+  -  A single web application or mobile app for customers to interact with the bookstore.
+  - Communicates directly with the monolithic backend.
 
-3)Database: A single SQL Server database hosted on the same VM or a separate VM. it stores all application data, including user information, transactions, and logs.
+ **2. Single Backend Server**
+- The backend is a monolithic system containing all business logic for the bookstore.Handles all functionalities.
 
-4)Background Tasks: Long-running processes or scheduled jobs are part of the same application.These tasks run synchronously or as separate threads within the monolithic application.
+ **3. Database**
+- A single relational database stores all data.
 
-5)Static Content: Static files are stored on the web server's file system.
+ **4. Backend Logic**
+- All business logic is tightly coupled in the same codebase and executed within the same application instance.
 
-6)Logs and Monitoring: Logs are written to local files on the VM. Monitoring is done manually or using basic tools.
+ **5. Payment Gateway Integration**
+- The monolithic application interacts with external payment services.
+- Payment processing is managed directly by the backend via synchronous API calls.
 
-![Monolithic_Architecture](https://github.com/user-attachments/assets/64ece12d-fefe-4b72-8175-6c68aeebe0e3)
+ **6. Traditional Web Server**
+- A single web server  hosts the application.
+- Handles incoming HTTP requests and forwards them to the monolithic backend.
 
+ **7. Reporting and Analytics**
+- Reports related to sales, inventory, and user activity are generated using custom SQL queries against the monolithic database.
+- No need for specialized analytics services since all data is stored in the same database.
 
-**Plan the Refactoring Strategy**: To refactor existing system, components needs to be replaced with cloud services.
-
-1)Frontend: Migrate to Azure App Service for hosting the web UI.
-
-2)Backend APIs: Refactor into microservices and deploy to Azure App Service or Azure Functions.
-
-3)Database: Migrate from VM-hosted SQL Server to Azure SQL Database.
-
-4)Background Tasks: Convert to Azure Functions for serverless execution.
-
-5)Static Content: Move to Azure Blob Storage.
-
-6)Logs: Store logs in Azure Blob Storage and use Azure Monitor for centralized logging.
+![BookStore_MonoliticArchitecture1](https://github.com/user-attachments/assets/8bf60398-c82d-431a-a1f2-d31b7deeff33)
 
 **Implement Refactoring Changes**:
+The bookstore’s architecture consists of containerized microservices hosted in the cloud, connected to cloud storage and analytics tools for efficient management of books, customer data, and inventory.
 
-1)Deploy the Frontend to Azure App Service : Package the frontend code. Use the Azure App Service Migration Assistant to migrate the frontend. Configure the App 
-  Service to auto-scale based on traffic.
+ **1. User/Client Request**
+The user can request various services such as:
+- Searching for books
+- Adding books to the cart
+- Processing payments
+- Viewing order history
 
-2)Migrate the Database to Azure SQL Database: Use the Azure Database Migration Service to migrate the SQL Server database to Azure SQL Database.
+ **2. Azure API Management**
+- Acts as the API Gateway for the system.
+- Handles all customer requests and routes them to the appropriate microservices (e.g., Search, Cart, Inventory, Payment, etc.).
+- Ensures secure and efficient communication between the client and backend services.
 
-3)Convert Background Tasks to Azure Functions: Identify background tasks. Rewrite these tasks as Azure Functions. Use triggers to execute the functions.
+ **3. Azure Load Balancer**
+- Distributes incoming traffic evenly across multiple instances of microservices.
+- Prevents overloading by routing requests efficiently to Kubernetes clusters managing microservices.
+- Ensures high availability and reliability.
 
-4)Store Static Content and Logs in Azure Blob Storage: Upload static files to Azure Blob Storage. Configure the application to serve static content from Blob Storage. Redirect application logs to Azure Blob Storage and integrate with Azure Monitor.
+ **4. Azure Kubernetes Service (AKS)**
+- Manages and orchestrates containers for each microservice.
+- Each microservice runs independently and communicates with others via APIs.
 
-![Refactor_Architecture](https://github.com/user-attachments/assets/4c9afe52-389c-4cdb-b98e-6f00b3192cef)
+### **Microservices in AKS:**
+#### **I. Search Service**
+- Handles search functionality within the bookstore.
+- Database: Uses Cosmos DB to index and retrieve books.
+
+#### **II. Shop Service**
+- Manages the user interface for browsing and adding books to the cart.
+- Handles promotions, categories, and shopping experience.
+- **Database**: Uses Cosmos DB for storing user cart data and preferences.
+
+#### **III. Inventory Service**
+- Manages the available stock of books.
+- Ensures stock availability and updates inventory after each purchase.
+- Database: Uses SQL Database to store book inventory details (e.g., stock quantity, location).
+
+#### **IV. Payment Service**
+- Handles all payment processing and transactions.
+- Database: Interacts with Azure Key Vault to securely manage payment credentials and API keys for third-party payment processors.
+
+#### **V. Order Management Service**
+- Manages customer orders, updates order statuses, and tracks order history.
+- Database: Uses SQL Database to store order history, shipping details, and customer information.
+
+#### **VI. Sales Service**
+- Tracks sales data and generates reports on book sales, discounts, and performance analytics.
+- Database: Uses SQL Database or Cosmos DB for high-performance storage of sales data.
+
+#### **VII. Accounting Service**
+- Handles financial calculations, invoice generation, and reporting.
+- Manages payments and financial reconciliations.
+- Database: Uses SQL Database to store financial data securely.
+
+ **5. Azure Functions (Serverless)**
+- Handles serverless operations such as:
+  - Sending email confirmations after a successful purchase.
+  - Processing one-time discount coupons.
+
+ **6. Azure Key Vault**
+- Stores sensitive credentials such as:
+  - API keys
+  - Payment gateway credentials
+- Ensures secure access to sensitive data.
+
+ **7. Azure Active Directory (Azure AD)**
+- Manages user authentication (e.g., logging in, managing personal order history).
+- Authenticates API requests to ensure secure access to services.
+
+ **8. Azure Monitor & Application Insights**
+- Provides real-time monitoring of:
+  - Infrastructure: Using Azure Monitor.
+  - Application-level performance: Using Application Insights.
+- Helps identify and resolve issues quickly, ensuring optimal performance.
+
+
+![BookStore_CloudArchitecture](https://github.com/user-attachments/assets/9e254f2c-ca92-4660-93e5-0ebc97f55089)
+
+
 
