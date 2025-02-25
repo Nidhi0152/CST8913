@@ -34,16 +34,12 @@ Components of the Monolithic Application
 **Implement Refactoring Changes**:
 The bookstore’s architecture consists of containerized microservices hosted in the cloud, connected to cloud storage and analytics tools for efficient management of books, customer data, and inventory.
 
- **1. User/Client Request**
-The user can request various services such as:
-- Searching for books
-- Adding books to the cart
-- Processing payments
-- Viewing order history
+ **1. Frontend**
+-A web application or mobile app for customers to interact with the bookstore. It is Hosted on Azure App Service for scalable and managed hosting.
 
  **2. Azure API Management**
 - Acts as the API Gateway for the system.
-- Handles all customer requests and routes them to the appropriate microservices (e.g., Search, Cart, Inventory, Payment, etc.).
+- Handles all customer requests and routes them to the appropriate microservices.
 - Ensures secure and efficient communication between the client and backend services.
 
  **3. Azure Load Balancer**
@@ -109,7 +105,5 @@ The user can request various services such as:
 - Helps identify and resolve issues quickly, ensuring optimal performance.
 
 
-![BookStore_CloudArchitecture](https://github.com/user-attachments/assets/9e254f2c-ca92-4660-93e5-0ebc97f55089)
-
-
+![BookStore_CloudArchitecture](https://github.com/user-attachments/assets/7b38cc76-5dab-4699-8874-623cfbf2c603)
 
