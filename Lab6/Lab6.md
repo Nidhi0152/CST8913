@@ -1,4 +1,6 @@
 Lab 6 - Refactoring a Legacy Application for Cloud-Native Deployment on Azure
+# **Scenario**
+An online bookstore is currently running a monolithic web application hosted on a Windows Server 2019 virtual machine (VM) in Azure. The company aims to modernize the application by refactoring it into a cloud-native microservices architecture that leverages Azure Cloud services. This transformation will improve scalability, performance, and security while enhancing maintainability and overall operational efficiency.
 
 # **Monolithic Architecture**
 A monolithic architecture is a conventional model where all components of an application are tightly coupled and deployed as a single unit.
