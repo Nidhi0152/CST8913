@@ -17,5 +17,13 @@ A cloud landing zone is a framework or environment that describes enterprise-wid
 | **Application Landing Zone (ALZ)** | Tailored for specific applications or workloads with customized resources. | Used when deploying an application with unique requirements<br>(e.g., a customer-facing web application with specific compliance needs). |
 
 # 3.Analyze Operating Models
+| Operating Model      | Focus                                                                 | Complexity   | Key Characteristics                                                                 | Use Case/Scenario                                                                 |
+|----------------------|-----------------------------------------------------------------------|--------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| **Decentralized**    | Independent workloads, minimal dependency on centralized operations. | Least complex | - Bimodal IT<br>- Autonomy for teams<br>- Minimal centralized governance            | Agile organizations, rapid development needs, or teams requiring full autonomy.  |
+| **Centralized**      | Controlled production environment managed by centralized operations. | Moderate     | - Strict governance<br>- Fewer landing zones<br>- Embedded foundational utilities   | Organizations prioritizing compliance, consistency, and centralized control.    |
+| **Enterprise**       | Large-scale migrations (e.g., entire datacenters) with centralized foundational utilities and platform foundations. | High         | - Centralized platform foundation (PLZ)<br>- Many landing zones<br>- Scalable governance | Enterprises migrating large portfolios or entire datacenters to the cloud.      |
+| **Distributed**      | Blends decentralized and centralized models.                         | Most complex | - Hybrid of operating models<br>- Often results from mergers/acquisitions          | Companies with legacy systems, rapid growth, or transitioning to simpler models. |
+### Best Model for migrating data centre:
+For data center migrations, an enterprise-scale landing zone operational model is generally best because it provides a modular, secure, and scalable foundation for deploying and managing workloads, including governance, security, and compliance controls from the outset. 
 # 4.Landing Zone Deployment Strategies
 # 5.Personal Reflection
