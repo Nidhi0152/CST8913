@@ -73,3 +73,4 @@ Use the Accelerator if you need a compliant, production-ready environment fast a
 ---
 
 # 5. Personal Reflection
+Security, scalability, governance, and cost optimization would be the most significant issues for an enterprise architect working on a Landing Zone for a big company. To guarantee a modular, safe, and scalable basis for deploying workloads, I would choose an enterprise-scale landing zone strategy. To simplify operations and guarantee uniform rules throughout several accounts, the deployment plan would use a combination of automation and centralized control. Moreover, concentrating on cost optimization to prevent resource waste and guarantee effective scaling would give a solid basis for shared services including networking and IAM as well as for a Platform Landing Zone selection.
