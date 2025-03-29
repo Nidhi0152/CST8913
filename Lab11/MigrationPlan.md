@@ -84,4 +84,25 @@
 - **IP Changes**: Azure migration may result in IP changes. Ensure that any DNS or IP-based configurations in the application are updated to reflect the new cloud IP addresses. Additionally, plan for any necessary downtime during the IP transition phase.
 
 By grouping servers logically and organizing the migration into waves, Tailwind OpenCare can ensure a smooth and efficient transition to Azure with minimal disruption.
+# 5. Migration Plan Documentation
+
+## Step-by-Step Migration Plan Using Azure-Native Services
+
+### **Step 1: Pre-Migration Planning and Preparation**
+- Review Azure Migrate assessment, take backups, set up Azure resources , and prepare DNS for post-migration updates.
+
+### **Step 2: Wave 1 - Migrate Frontend and Backend Servers**
+- Deploy Azure VMs for NGINX and Node.js, migrate application files, update DNS, and configure Azure Load Balancer to distribute traffic.
+
+### **Step 3: Wave 2 - Migrate PostgreSQL Database**
+- Set up Azure Database for PostgreSQL, migrate data using pg_dump or Azure DMS, and test database connections from the backend.
+
+### **Step 4: Wave 3 - Migrate Redis Cache**
+- Set up Azure Cache for Redis, migrate data using RDB/AOF, and update backend configurations to point to the new Redis instance.
+
+### **Step 5: Post-Migration Testing and Validation**
+- Application owners test functionality, performance, and backup validation, using Azure Monitor and Application Insights for monitoring.
+
+### **Step 6: Final DNS and Firewall Configuration**
+- Update DNS to route traffic to Azure, configure firewall and NSGs for secure communication between resources.
 
