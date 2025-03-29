@@ -62,7 +62,7 @@
 - **SLA**: Determine the service-level agreements for each system, especially those with stringent uptime or response time requirements, ensuring Azure resources meet or exceed these standards.
 - **Backup Requirements**: Identify backup needs, such as daily backups for critical systems and ensure Azure’s backup solutions are configured to meet these requirements.
 
-  # 4. Server Grouping and Migration Waves
+# 4. Server Grouping and Migration Waves
 
 ## Logical Server Groupings
 
