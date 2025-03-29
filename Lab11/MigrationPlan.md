@@ -61,3 +61,27 @@
 - **User Base**: Evaluate the size of the user base for each service ensuring that the selected Azure resources can handle peak loads and traffic.
 - **SLA**: Determine the service-level agreements for each system, especially those with stringent uptime or response time requirements, ensuring Azure resources meet or exceed these standards.
 - **Backup Requirements**: Identify backup needs, such as daily backups for critical systems and ensure Azure’s backup solutions are configured to meet these requirements.
+
+  # 4. Server Grouping and Migration Waves
+
+## Logical Server Groupings
+
+- **Frontend (NGINX Servers)**: These servers handle user requests, acting as a reverse proxy for routing traffic to the backend servers. Group them together as part of the web-facing tier.
+- **Backend (Node.js API Servers)**: These servers provide the application logic and APIs required by the frontend. Group them as part of the application service layer.
+- **Database (PostgreSQL Server)**: The database server stores and retrieves application data. Group it separately in the database tier for focused migration and optimization.
+- **Caching (Redis Server)**: The Redis server handles caching for performance optimization. Group it with the backend tier, as it directly interacts with the application logic.
+
+## Prioritization of Migration Waves and Grouping Interdependent Systems
+
+- **Wave 1 - Frontend & Backend**: Migrate the frontend (NGINX) and backend (Node.js) servers first, as they are interdependent and handle the core application traffic. This will allow the frontend and backend systems to be fully functional in Azure.
+- **Wave 2 - Database (PostgreSQL)**: Once the frontend and backend are successfully migrated, move the PostgreSQL database. Ensure the database is synchronized with the backend API servers to maintain data consistency.
+- **Wave 3 - Caching (Redis)**: Finally, migrate the Redis server after the backend and database are stable in the cloud, ensuring caching functionality aligns with the migrated backend systems.
+
+## Precautions for Firewall Rules, Load Balancer Configurations, or IP Changes
+
+- **Firewall Rules**: Ensure that appropriate firewall rules are configured in Azure to allow secure communication between migrated servers. Update security groups to reflect the Azure environment.
+- **Load Balancer Configurations**: Reconfigure the Azure Load Balancer to handle traffic distribution for the frontend and backend servers. Ensure health checks and load balancing rules align with the new infrastructure.
+- **IP Changes**: Azure migration may result in IP changes. Ensure that any DNS or IP-based configurations in the application are updated to reflect the new cloud IP addresses. Additionally, plan for any necessary downtime during the IP transition phase.
+
+By grouping servers logically and organizing the migration into waves, Tailwind OpenCare can ensure a smooth and efficient transition to Azure with minimal disruption.
+
